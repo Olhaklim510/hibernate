@@ -7,7 +7,7 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import java.util.List;
 
-public class ClientCrudService implements CrudService <Client, Long>{
+public class ClientCrudService implements CrudService <Client, Long, String>{
     @Override
     public void create(Client client) throws Exception {
 
@@ -28,14 +28,15 @@ public class ClientCrudService implements CrudService <Client, Long>{
 
     @Override
     public Client getById(Long id) {
-        Client client;
+//        Client client;
         try (Session session = HibernateUtil.getINSTANCE().getSessionFactory().openSession()) {
-            Query<Client> queryGetById= session.createQuery("from Client where id=:id", Client.class);
-            queryGetById.setParameter("id", id);
-            client=queryGetById.getSingleResult();
-            System.out.println("client = " + client);
+//            Query<Client> queryGetById= session.createQuery("from Client where id=:id", Client.class);
+//            queryGetById.setParameter("id", id);
+//            client=queryGetById.getSingleResult();
+//            System.out.println("client = " + client);
+            return session.get(Client.class, id);
         }
-        return client;
+//        return client;
     }
 
     @Override

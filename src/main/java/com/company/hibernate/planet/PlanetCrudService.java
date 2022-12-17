@@ -8,7 +8,7 @@ import org.hibernate.query.Query;
 
 import java.util.List;
 
-public class PlanetCrudService implements CrudService <Planet, String> {
+public class PlanetCrudService implements CrudService <Planet, String, String> {
     @Override
     public void create(Planet planet) throws Exception {
         if(!planet.getId().matches("^[A-Z0-9]*$")){
@@ -36,14 +36,15 @@ public class PlanetCrudService implements CrudService <Planet, String> {
 
     @Override
     public Planet getById(String id) {
-        Planet planet;
+//        Planet planet;
         try (Session session = HibernateUtil.getINSTANCE().getSessionFactory().openSession()) {
-            Query<Planet> queryGetById= session.createQuery("from Planet where id=:id", Planet.class);
-            queryGetById.setParameter("id", id);
-            planet=queryGetById.getSingleResult();
-            System.out.println("planet = " + planet);
+//            Query<Planet> queryGetById= session.createQuery("from Planet where id=:id", Planet.class);
+//            queryGetById.setParameter("id", id);
+//            planet=queryGetById.getSingleResult();
+//            System.out.println("planet = " + planet);
+            return session.get(Planet.class, id);
         }
-        return planet;
+//        return planet;
     }
 
     @Override

@@ -1,8 +1,11 @@
 package com.company.hibernate.ticket;
 
+import com.company.hibernate.client.Client;
+import com.company.hibernate.planet.Planet;
 import jakarta.persistence.*;
 
 import java.sql.Date;
+import java.util.List;
 import java.util.Objects;
 
 @Table(name = "ticket")
@@ -15,14 +18,17 @@ public class Ticket {
     @Column
     private Date created_at;
 
-    @Column
-    private int client_id;
+    @Column(name = "client_id")
+    @OneToMany(mappedBy = "id")
+    private List<Client> client;
 
-    @Column
-    private String from_planet_id;
+    @Column(name = "from_planet_id")
+    @OneToMany(mappedBy = "id")
+    private List<Planet> fromPlanet;
 
-    @Column
-    private String to_planet_id;
+    @Column(name = "to_planet_id")
+    @OneToMany(mappedBy = "id")
+    private List<Planet> toPlanet;
 
     public Ticket() {
     }
@@ -43,28 +49,28 @@ public class Ticket {
         this.created_at = created_at;
     }
 
-    public int getClient_id() {
-        return client_id;
+    public List<Client> getClient() {
+        return client;
     }
 
-    public void setClient_id(int client_id) {
-        this.client_id = client_id;
+    public void setClient(List<Client> client) {
+        this.client = client;
     }
 
-    public String getFrom_planet_id() {
-        return from_planet_id;
+    public List<Planet> getFromPlanet() {
+        return fromPlanet;
     }
 
-    public void setFrom_planet_id(String from_planet_id) {
-        this.from_planet_id = from_planet_id;
+    public void setFromPlanet(List<Planet> fromPlanet) {
+        this.fromPlanet = fromPlanet;
     }
 
-    public String getTo_planet_id() {
-        return to_planet_id;
+    public List<Planet> getToPlanet() {
+        return toPlanet;
     }
 
-    public void setTo_planet_id(String to_planet_id) {
-        this.to_planet_id = to_planet_id;
+    public void setToPlanet(List<Planet> toPlanet) {
+        this.toPlanet = toPlanet;
     }
 
     @Override
@@ -72,9 +78,9 @@ public class Ticket {
         return "Ticket{" +
                 "id=" + id +
                 ", created_at=" + created_at +
-                ", client_id=" + client_id +
-                ", from_planet_id=" + from_planet_id +
-                ", to_planet_id=" + to_planet_id +
+                ", client=" + client +
+                ", fromPlanet=" + fromPlanet +
+                ", toPlanet=" + toPlanet +
                 '}';
     }
 
@@ -83,11 +89,11 @@ public class Ticket {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Ticket ticket = (Ticket) o;
-        return id == ticket.id && client_id == ticket.client_id && Objects.equals(created_at, ticket.created_at) && Objects.equals(from_planet_id, ticket.from_planet_id) && Objects.equals(to_planet_id, ticket.to_planet_id);
+        return id == ticket.id && Objects.equals(created_at, ticket.created_at) && Objects.equals(client, ticket.client) && Objects.equals(fromPlanet, ticket.fromPlanet) && Objects.equals(toPlanet, ticket.toPlanet);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, created_at, client_id, from_planet_id, to_planet_id);
+        return Objects.hash(id, created_at, client, fromPlanet, toPlanet);
     }
 }
