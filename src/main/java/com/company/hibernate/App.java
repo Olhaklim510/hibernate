@@ -4,6 +4,10 @@ import com.company.hibernate.client.Client;
 import com.company.hibernate.client.ClientCrudService;
 import com.company.hibernate.planet.Planet;
 import com.company.hibernate.planet.PlanetCrudService;
+import com.company.hibernate.ticket.Ticket;
+import com.company.hibernate.ticket.TicketCrudService;
+
+import java.util.Date;
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -34,5 +38,25 @@ public class App {
         new PlanetCrudService().deleteById("1MERCURY");
 
         new PlanetCrudService().getAll();
+
+        //test for TicketCrudService.class
+        Ticket ticket = new Ticket();
+        ticket.setCreated_at(new Date());
+        ticket.setClient(new ClientCrudService().getById(6L));
+        ticket.setFromPlanet(new PlanetCrudService().getById("5JUPITER"));
+        ticket.setToPlanet(new PlanetCrudService().getById("2VENUS"));
+        new TicketCrudService().create(ticket);
+
+        new TicketCrudService().getById(2L);
+
+        Client clientForTicket = new Client();
+        clientForTicket.setName("Baldinini");
+        new ClientCrudService().create(clientForTicket);
+
+        new TicketCrudService().modify(3L, clientForTicket);
+
+        new TicketCrudService().deleteById(5L);
+
+        new TicketCrudService().getAll();
     }
 }
