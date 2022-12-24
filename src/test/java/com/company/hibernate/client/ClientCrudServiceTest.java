@@ -39,7 +39,7 @@ class ClientCrudServiceTest {
     }
 
     @Test
-    public void testThatModifyHandledCorrectly() throws Exception {
+    public void testThatModifyClientHandledCorrectly() throws Exception {
         Client originalClient=new Client();
         originalClient.setName("TestModify");
 
@@ -58,7 +58,7 @@ class ClientCrudServiceTest {
     }
 
     @Test
-    public void testThatDeleteByIdHandledCorrectly() throws Exception {
+    public void testThatDeleteClientByIdHandledCorrectly() throws Exception {
         Client originalClient=new Client();
         originalClient.setName("TestDeleteById");
 

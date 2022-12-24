@@ -4,7 +4,8 @@ import com.company.hibernate.client.Client;
 import com.company.hibernate.planet.Planet;
 import jakarta.persistence.*;
 
-import java.sql.Date;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -13,31 +14,31 @@ import java.util.Objects;
 public class Ticket {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    private int id;
+    private Long id;
 
     @Column
     private Date created_at;
 
-    @Column(name = "client_id")
-    @OneToMany(mappedBy = "id")
-    private List<Client> client;
+    @JoinColumn(name = "client_id")
+    @ManyToOne
+    private Client client;
 
-    @Column(name = "from_planet_id")
-    @OneToMany(mappedBy = "id")
-    private List<Planet> fromPlanet;
+    @JoinColumn(name = "from_planet_id")
+    @OneToOne
+    private Planet fromPlanet;
 
-    @Column(name = "to_planet_id")
-    @OneToMany(mappedBy = "id")
-    private List<Planet> toPlanet;
+    @JoinColumn(name = "to_planet_id")
+    @OneToOne
+    private Planet toPlanet;
 
     public Ticket() {
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -49,27 +50,27 @@ public class Ticket {
         this.created_at = created_at;
     }
 
-    public List<Client> getClient() {
+    public Client getClient() {
         return client;
     }
 
-    public void setClient(List<Client> client) {
+    public void setClient(Client client) {
         this.client = client;
     }
 
-    public List<Planet> getFromPlanet() {
+    public Planet getFromPlanet() {
         return fromPlanet;
     }
 
-    public void setFromPlanet(List<Planet> fromPlanet) {
+    public void setFromPlanet(Planet fromPlanet) {
         this.fromPlanet = fromPlanet;
     }
 
-    public List<Planet> getToPlanet() {
+    public Planet getToPlanet() {
         return toPlanet;
     }
 
-    public void setToPlanet(List<Planet> toPlanet) {
+    public void setToPlanet(Planet toPlanet) {
         this.toPlanet = toPlanet;
     }
 

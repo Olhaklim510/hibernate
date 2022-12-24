@@ -14,7 +14,7 @@ CREATE TABLE ticket (
     client_id BIGINT NOT NULL,
     from_planet_id VARCHAR NOT NULL,
     to_planet_id VARCHAR NOT NULL,
-    FOREIGN KEY (client_id) REFERENCES client(id),
-    FOREIGN KEY (from_planet_id) REFERENCES planet(id),
-    FOREIGN KEY (to_planet_id) REFERENCES planet(id)
+    FOREIGN KEY (client_id) REFERENCES client(id) ON DELETE CASCADE,
+    FOREIGN KEY (from_planet_id) REFERENCES planet(id) ON DELETE CASCADE,
+    FOREIGN KEY (to_planet_id) REFERENCES planet(id) ON DELETE CASCADE
 );

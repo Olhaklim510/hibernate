@@ -40,7 +40,7 @@ class PlanetCrudServiceTest {
     }
 
     @Test
-    public void testThatModifyHandledCorrectly() throws Exception {
+    public void testThatModifyPlanetHandledCorrectly() throws Exception {
         Planet originalPlanet=new Planet();
         originalPlanet.setId("1TESTMODIFYID");
         originalPlanet.setName("TestModifyName");
@@ -57,7 +57,7 @@ class PlanetCrudServiceTest {
     }
 
     @Test
-    public void testThatDeleteByIdHandledCorrectly() throws Exception {
+    public void testThatDeletePlanetByIdHandledCorrectly() throws Exception {
         Planet originalPlanet=new Planet();
         originalPlanet.setId("1TESTDELETEBYID");
         originalPlanet.setName("TestDeleteById");
@@ -71,7 +71,7 @@ class PlanetCrudServiceTest {
     }
 
     @Test
-    public void testThatGetAllListClientHandledCorrectly() throws Exception {
+    public void testThatGetAllListPlanetHandledCorrectly() throws Exception {
         Planet expected=new Planet();
         expected.setId("1TESTGETALLLIST");
         expected.setName("TestGetAllList");

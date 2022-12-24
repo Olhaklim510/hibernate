@@ -1,7 +1,9 @@
 package com.company.hibernate.client;
 
+import com.company.hibernate.ticket.Ticket;
 import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.Objects;
 
 @Table(name = "client")
@@ -13,6 +15,17 @@ public class Client {
 
     @Column
     private String name;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "client")
+    private List <Ticket> tickets;
+
+    public List<Ticket> getTickets() {
+        return tickets;
+    }
+
+    public void setTickets(List<Ticket> tickets) {
+        this.tickets = tickets;
+    }
 
     public Client() {
     }
@@ -51,6 +64,6 @@ public class Client {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name);
+        return Objects.hash(id, name, tickets);
     }
 }

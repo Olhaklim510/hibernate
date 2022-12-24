@@ -49,11 +49,14 @@ public class App {
 
         new TicketCrudService().getById(2L);
 
-        Client clientForTicket = new Client();
-        clientForTicket.setName("Baldinini");
-        new ClientCrudService().create(clientForTicket);
+        Ticket ticketModified = new Ticket();
+        ticketModified.setCreated_at(new Date());
+        ticketModified.setClient(client);
+        ticketModified.setFromPlanet(new PlanetCrudService().getById("3EARTH"));
+        ticketModified.setToPlanet(new PlanetCrudService().getById("6SATURN"));
+        new TicketCrudService().create(ticketModified);
 
-        new TicketCrudService().modify(3L, clientForTicket);
+        new TicketCrudService().modify(3L, ticketModified);
 
         new TicketCrudService().deleteById(5L);
 
